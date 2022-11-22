@@ -28,7 +28,7 @@ export class AppComponent {
     ValueType: any;
     value: any
 
-    constructor(private formBuilder: FormBuilder, private dropdownService: DropdownService) {
+    constructor(private formBuilder: FormBuilder, private dropdownSer: DropdownService) {
       this.builderObj = new Builder();
       this.getFormFiller();
     }
@@ -81,7 +81,7 @@ export class AppComponent {
           this.storedLocallyFormFiller(this.formFillerObj);
       }
         if (this.controlform.value.valueType == "dropdown") {
-            let stateList = this.dropdownService.getList();
+            let stateList = this.dropdownSer.getList();
             let _ddlStateList = <IFormField> {
                 label: this.controlform.value.labelname,
                 f_Name: this.controlform.value.typename,
