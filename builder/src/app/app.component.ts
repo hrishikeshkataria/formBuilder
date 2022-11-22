@@ -20,7 +20,7 @@ export class AppComponent {
       typename: ['', Validators.required],
       valueType: ['0', Validators.required],
       labelname: ['', Validators.required],
-     // value: ['', Validators.required]
+
   });
     lstForm: IFormField[] = [];
     outputStr: string = '';
@@ -40,13 +40,12 @@ export class AppComponent {
             typename: ['', Validators.required],
             valueType: ['0', Validators.required],
             labelname: ['', Validators.required],
-            //value: ['', Validators.required],
+
         });
         this.getFBuild();
         this.getFormFiller();
     }
     onSubmitControl() {
-      debugger;
         if (this.controlform.value.valueType == "text") {
             let _un = <IFormField> {
                 label: this.controlform.value.labelname,
@@ -59,13 +58,11 @@ export class AppComponent {
               f_Value: this.controlform.value.typename
             }
             this.lstForm.push(_un);
-            //LocalStorage
             this.storedBuilderLocally(_un);
             this.storedLocallyFormFiller(this.formFillerObj);
         }
 
         if (this.controlform.value.valueType == "number") {
-          debugger;
           let _un = <IFormField> {
               label: this.controlform.value.labelname,
               f_Name: this.controlform.value.typename,
@@ -80,18 +77,16 @@ export class AppComponent {
           }
           console.log("Filler obj => " +this.formFillerObj);
           this.lstForm.push(_un);
-          //LocalStorage
           this.storedBuilderLocally(_un);
           this.storedLocallyFormFiller(this.formFillerObj);
       }
         if (this.controlform.value.valueType == "dropdown") {
-            let stateList = this.dropdownService.getList(); // Get test list from service
+            let stateList = this.dropdownService.getList();
             let _ddlStateList = <IFormField> {
                 label: this.controlform.value.labelname,
                 f_Name: this.controlform.value.typename,
                 f_Type: this.controlform.value.valueType == "dropdown" ? 'select' : '',
                 f_Value: '0',
-                //f_val: '',
                 values: stateList,
             };
             this.lstForm.push(_ddlStateList);
@@ -103,7 +98,7 @@ export class AppComponent {
               f_Name: this.controlform.value.typename,
               f_Type: this.controlform.value.valueType,
               f_Value: this.controlform.value.typename,
-              //f_val: this.controlform.value.value,
+
           };
           this.lstForm.push(_radio);
       }
@@ -113,7 +108,7 @@ export class AppComponent {
                 f_Name: this.controlform.value.typename,
                 f_Type: this.controlform.value.valueType,
                 f_Value: this.controlform.value.typename,
-                //f_val: this.controlform.value.value,
+
             };
             this.lstForm.push(_radio);
         }
@@ -123,7 +118,7 @@ export class AppComponent {
                 f_Name: this.controlform.value.typename,
                 f_Type: this.controlform.value.valueType == "datepicker" ? 'date' : '',
                 f_Value: this.controlform.value.typename,
-                //f_val: this.controlform.value.value,
+
             };
             this.lstForm.push(_radio);
         }
@@ -159,7 +154,6 @@ export class AppComponent {
 
 
     formValidation() {
-      debugger;
         const group: any = {};
         for (var field of this.lstForm) {
             if (field.f_Type == 'text') {
